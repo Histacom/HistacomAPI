@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+group = 'io.github.histacom'
+archivesBaseName = 'HistacomAPI'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'com.google.guava:guava:18.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
