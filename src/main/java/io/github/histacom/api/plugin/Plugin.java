@@ -21,40 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api;
+package io.github.histacom.api.plugin;
 
-import io.github.histacom.api.era.EraManager;
-import io.github.histacom.api.plugin.PluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Created by jamie on 19/04/15.
  */
-public abstract class Game {
+public abstract class Plugin {
 
-    private final Logger logger = LoggerFactory.getLogger("Histacom");
+    private final PluginInformation pluginInformation;
+    private final Logger logger;
+
+    public Plugin(PluginInformation pluginInformation) {
+        this.pluginInformation = pluginInformation;
+        this.logger = LoggerFactory.getLogger(pluginInformation.getName());
+    }
+
+    public abstract void onEnable();
+
+    public abstract void onDisable();
+
+    public PluginInformation getPluginInformation() {
+        return pluginInformation;
+    }
 
     /**
-     * The game's main logger
+     * The plugin logger
      *
-     * @return the main logger
+     * @return the plugin logger
      */
     public Logger getLogger() {
         return logger;
     }
-
-    /**
-     * The game's {@link EraManager}
-     *
-     * @return the game's {@link EraManager}
-     */
-    public abstract EraManager getEraManager();
-
-    /**
-     * The game's {@link PluginManager}
-     *
-     * @return the game's {@link PluginManager}
-     */
-    public abstract PluginManager getPluginManager();
 }

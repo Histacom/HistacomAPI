@@ -21,4 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.event;
+package io.github.histacom.api.plugin;
+
+import java.util.List;
+
+/**
+ * Created by jamie on 19/04/15.
+ */
+public class PluginInformation {
+
+    private String name;
+    private String version;
+    private List<String> authors;
+    private String mainClass;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public List<String> getAuthors() {
+        return authors;
+    }
+
+    public String getMainClass() {
+        return mainClass;
+    }
+}

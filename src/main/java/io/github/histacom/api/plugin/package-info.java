@@ -21,11 +21,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.event;
-
-/**
- * Created by jamie on 19/04/15.
- */
-public interface Event {
-
-}
+package io.github.histacom.api.plugin;

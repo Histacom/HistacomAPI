@@ -21,40 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api;
+package io.github.histacom.api.plugin;
 
-import io.github.histacom.api.era.EraManager;
-import io.github.histacom.api.plugin.PluginManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.File;
+import java.util.Set;
 
 /**
  * Created by jamie on 19/04/15.
  */
-public abstract class Game {
-
-    private final Logger logger = LoggerFactory.getLogger("Histacom");
+public interface PluginManager {
 
     /**
-     * The game's main logger
+     * Gets all the enabled plugins
      *
-     * @return the main logger
+     * @return the enabled plugins
      */
-    public Logger getLogger() {
-        return logger;
-    }
+    Set<Plugin> getPlugins();
 
     /**
-     * The game's {@link EraManager}
+     * Scans a directory for plugins
      *
-     * @return the game's {@link EraManager}
-     */
-    public abstract EraManager getEraManager();
-
-    /**
-     * The game's {@link PluginManager}
+     * @param directory the directory to scan
      *
-     * @return the game's {@link PluginManager}
+     * @return all found plugins
      */
-    public abstract PluginManager getPluginManager();
+    Set<Plugin> scanForPlugins(File directory);
 }
