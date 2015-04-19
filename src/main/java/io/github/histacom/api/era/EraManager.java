@@ -1,5 +1,5 @@
 /*
- * This file is part of Neptune, licensed under the MIT License (MIT).
+ * This file is part of HistacomAPI, licensed under the MIT License (MIT).
  *
  * Copyright (c) 2015, Histacom Development Team <https://github.com/histacom>
  *
@@ -34,4 +34,20 @@ public interface EraManager {
      * @return the current {@link Era}
      */
     Era getCurrentEra();
+
+    /**
+     * Advances to the next {@link Era}
+     *
+     * @return the next {@link Era}
+     */
+    Era advanceEra();
+
+    /**
+     * Registers an {@link Era}
+     *
+     * The {@link Era} will be added to the end of the {@link Era} list
+     *
+     * @param era the {@link Era} to register
+     */
+    void addEra(Era era);
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of Neptune, licensed under the MIT License (MIT).
+ * This file is part of HistacomAPI, licensed under the MIT License (MIT).
  *
  * Copyright (c) 2015, Histacom Development Team <https://github.com/histacom>
  *

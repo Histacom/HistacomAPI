@@ -21,4 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api;
+package io.github.histacom.api.era;
+
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+
+import java.util.List;
+
+/**
+ * Created by jamie on 19/04/15.
+ */
+public class DefaultEraManager implements EraManager {
+
+    private List<Era> eras = Lists.newArrayList();
+    private Era currentEra;
+    private int lastEra = 0;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Era getCurrentEra() {
+        if (currentEra == null) {
+            currentEra = Preconditions.checkNotNull(eras.get(lastEra));
+        }
+        return currentEra;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Era advanceEra() {
+        return currentEra = Preconditions.checkNotNull(eras.get(++lastEra));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addEra(Era era) {
+        eras.add(Preconditions.checkNotNull(era));
+    }
+}
