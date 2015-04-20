@@ -31,20 +31,20 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class Plugin {
 
-    private final PluginInformation pluginInformation;
+    private final PluginDescription pluginDescription;
     private final Logger logger;
 
-    public Plugin(PluginInformation pluginInformation) {
-        this.pluginInformation = pluginInformation;
-        this.logger = LoggerFactory.getLogger(pluginInformation.getName());
+    public Plugin(PluginDescription pluginDescription) {
+        this.pluginDescription = pluginDescription;
+        this.logger = LoggerFactory.getLogger(pluginDescription.getName());
     }
 
     public abstract void onEnable();
 
     public abstract void onDisable();
 
-    public PluginInformation getPluginInformation() {
-        return pluginInformation;
+    public PluginDescription getDescription() {
+        return pluginDescription;
     }
 
     /**

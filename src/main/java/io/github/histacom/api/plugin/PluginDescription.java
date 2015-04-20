@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Created by jamie on 19/04/15.
  */
-public class PluginInformation {
+public class PluginDescription {
 
     private String name;
     private String version;
