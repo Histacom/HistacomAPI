@@ -28,33 +28,30 @@ import io.github.histacom.api.plugin.PluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Created by jamie on 19/04/15.
- */
 public abstract class Game {
 
     private final Logger logger = LoggerFactory.getLogger("Histacom");
 
     /**
-     * The game's main logger
+     * The game's main logger.
      *
-     * @return the main logger
+     * @return The main {@link Logger}.
      */
     public Logger getLogger() {
-        return logger;
+        return this.logger;
     }
 
     /**
-     * The game's {@link EraManager}
+     * The game's {@link EraManager}.
      *
-     * @return the game's {@link EraManager}
+     * @return The game's {@link EraManager}.
      */
     public abstract EraManager getEraManager();
 
     /**
-     * The game's {@link PluginManager}
+     * The game's {@link PluginManager}.
      *
-     * @return the game's {@link PluginManager}
+     * @return the game's {@link PluginManager}.
      */
     public abstract PluginManager getPluginManager();
 }

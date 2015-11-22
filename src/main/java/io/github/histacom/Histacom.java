@@ -26,9 +26,6 @@ package io.github.histacom;
 import com.google.common.base.Preconditions;
 import io.github.histacom.api.Game;
 
-/**
- * Created by jamie on 19/04/15.
- */
 public class Histacom {
 
     private static Game game;
@@ -39,7 +36,7 @@ public class Histacom {
      *
      * <b>THIS SHOULD ONLY BE USED BY THE IMPLEMENTATION!</b>
      *
-     * @param game the {@link Game} to set.
+     * @param game The {@link Game} to set.
      */
     public static void setGame(Game game) {
         if (Histacom.game != null) {
@@ -49,9 +46,9 @@ public class Histacom {
     }
 
     /**
-     * Gets the currently running {@link Game}
+     * Gets the currently running {@link Game}.
      *
-     * @return the {@link Game} instance being run
+     * @return The {@link Game} instance being run.
      */
     public static Game getGame() {
         return game;

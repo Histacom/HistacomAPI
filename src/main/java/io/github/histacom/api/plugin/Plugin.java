@@ -26,9 +26,6 @@ package io.github.histacom.api.plugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Created by jamie on 19/04/15.
- */
 public abstract class Plugin {
 
     private final PluginDescription pluginDescription;
@@ -44,15 +41,15 @@ public abstract class Plugin {
     public abstract void onDisable();
 
     public PluginDescription getDescription() {
-        return pluginDescription;
+        return this.pluginDescription;
     }
 
     /**
-     * The plugin logger
+     * The plugin's logger.
      *
-     * @return the plugin logger
+     * @return The {@link Logger}.
      */
     public Logger getLogger() {
-        return logger;
+        return this.logger;
     }
 }

@@ -25,9 +25,6 @@ package io.github.histacom.api.plugin;
 
 import java.util.List;
 
-/**
- * Created by jamie on 19/04/15.
- */
 public class PluginDescription {
 
     private String name;
@@ -36,18 +33,18 @@ public class PluginDescription {
     private String mainClass;
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getVersion() {
-        return version;
+        return this.version;
     }
 
     public List<String> getAuthors() {
-        return authors;
+        return this.authors;
     }
 
     public String getMainClass() {
-        return mainClass;
+        return this.mainClass;
     }
 }

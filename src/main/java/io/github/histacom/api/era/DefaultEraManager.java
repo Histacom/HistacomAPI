@@ -28,9 +28,6 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-/**
- * Created by jamie on 19/04/15.
- */
 public class DefaultEraManager implements EraManager {
 
     private List<Era> eras = Lists.newArrayList();
@@ -42,10 +39,10 @@ public class DefaultEraManager implements EraManager {
      */
     @Override
     public Era getCurrentEra() {
-        if (currentEra == null) {
-            currentEra = Preconditions.checkNotNull(eras.get(lastEra));
+        if (this.currentEra == null) {
+            this.currentEra = Preconditions.checkNotNull(this.eras.get(this.lastEra));
         }
-        return currentEra;
+        return this.currentEra;
     }
 
     /**
@@ -53,7 +50,7 @@ public class DefaultEraManager implements EraManager {
      */
     @Override
     public Era advanceEra() {
-        return currentEra = Preconditions.checkNotNull(eras.get(++lastEra));
+        return this.currentEra = Preconditions.checkNotNull(this.eras.get(++this.lastEra));
     }
 
     /**
@@ -61,6 +58,6 @@ public class DefaultEraManager implements EraManager {
      */
     @Override
     public void addEra(Era era) {
-        eras.add(Preconditions.checkNotNull(era));
+        this.eras.add(Preconditions.checkNotNull(era));
     }
 }

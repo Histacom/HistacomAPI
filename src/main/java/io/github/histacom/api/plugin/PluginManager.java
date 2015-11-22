@@ -26,24 +26,20 @@ package io.github.histacom.api.plugin;
 import java.io.File;
 import java.util.Set;
 
-/**
- * Created by jamie on 19/04/15.
- */
 public interface PluginManager {
 
     /**
-     * Gets all the enabled plugins
+     * Gets all the enabled plugins.
      *
-     * @return the enabled plugins
+     * @return The enabled {@link Plugin}s.
      */
     Set<Plugin> getPlugins();
 
     /**
-     * Scans a directory for plugins
+     * Scans a directory for plugins.
      *
-     * @param directory the directory to scan
-     *
-     * @return all found plugins
+     * @param directory The directory to scan.
+     * @return All found {@link Plugin}s.
      */
     Set<Plugin> scanForPlugins(File directory);
 }

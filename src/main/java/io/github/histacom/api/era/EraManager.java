@@ -23,31 +23,27 @@
  */
 package io.github.histacom.api.era;
 
-/**
- * Created by jamie on 19/04/15.
- */
 public interface EraManager {
 
     /**
-     * Gets the {@link Era} currently being used
+     * Gets the {@link Era} currently being used.
      *
-     * @return the current {@link Era}
+     * @return The current {@link Era}.
      */
     Era getCurrentEra();
 
     /**
-     * Advances to the next {@link Era}
+     * Advances to the next {@link Era}.
      *
-     * @return the next {@link Era}
+     * @return The next {@link Era}.
      */
     Era advanceEra();
 
     /**
-     * Registers an {@link Era}
+     * Registers an {@link Era}.
+     * The {@link Era} will be added to the end of the {@link Era} list.
      *
-     * The {@link Era} will be added to the end of the {@link Era} list
-     *
-     * @param era the {@link Era} to register
+     * @param era The {@link Era} to register.
      */
     void addEra(Era era);
 }

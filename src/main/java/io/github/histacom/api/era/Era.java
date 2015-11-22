@@ -23,9 +23,6 @@
  */
 package io.github.histacom.api.era;
 
-/**
- * Created by jamie on 19/04/15.
- */
 public interface Era {
 
 }
