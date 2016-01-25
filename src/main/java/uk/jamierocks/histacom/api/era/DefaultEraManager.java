@@ -64,6 +64,10 @@ public class DefaultEraManager implements EraManager {
      */
     @Override
     public void addEra(Era era) {
-        this.eras.add(Preconditions.checkNotNull(era));
+        Preconditions.checkNotNull(era);
+
+        Histacom.getGame().getEventBus().registerListener(era);
+
+        this.eras.add(era);
     }
 }
