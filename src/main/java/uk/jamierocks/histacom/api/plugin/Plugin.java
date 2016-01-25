@@ -21,12 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.event.era;
+package uk.jamierocks.histacom.api.plugin;
 
-import io.github.histacom.api.era.Era;
-import io.github.histacom.api.event.Event;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public interface EraEvent extends Event {
+public abstract class Plugin {
 
-    Era getEra();
+    private final PluginDescription pluginDescription;
+    private final Logger logger;
+
+    public Plugin(PluginDescription pluginDescription) {
+        this.pluginDescription = pluginDescription;
+        this.logger = LoggerFactory.getLogger(pluginDescription.getName());
+    }
+
+    public abstract void onEnable();
+
+    public abstract void onDisable();
+
+    public PluginDescription getDescription() {
+        return this.pluginDescription;
+    }
+
+    /**
+     * The plugin's logger.
+     *
+     * @return The {@link Logger}.
+     */
+    public Logger getLogger() {
+        return this.logger;
+    }
 }

@@ -21,30 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.plugin;
+package uk.jamierocks.histacom.api.event.era;
 
-import java.util.List;
+import uk.jamierocks.histacom.api.era.Era;
 
-public class PluginDescription {
+import java.util.Optional;
 
-    private String name;
-    private String version;
-    private List<String> authors;
-    private String mainClass;
+public class AdvanceEraEvent implements EraEvent {
 
-    public String getName() {
-        return this.name;
+    private final Era newEra;
+    private final Era oldEra;
+
+    public AdvanceEraEvent(Era newEra, Era oldEra) {
+        this.newEra = newEra;
+        this.oldEra = oldEra;
     }
 
-    public String getVersion() {
-        return this.version;
+    @Override
+    public Era getEra() {
+        return this.newEra;
     }
 
-    public List<String> getAuthors() {
-        return this.authors;
-    }
-
-    public String getMainClass() {
-        return this.mainClass;
+    public Optional<Era> getPreviousEra() {
+        return Optional.ofNullable(this.oldEra);
     }
 }

@@ -21,4 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.era;
+package uk.jamierocks.histacom.api.plugin;
+
+import java.io.File;
+import java.util.Set;
+
+public interface PluginManager {
+
+    /**
+     * Gets all the enabled plugins.
+     *
+     * @return The enabled {@link Plugin}s.
+     */
+    Set<Plugin> getPlugins();
+
+    /**
+     * Scans a directory for plugins.
+     *
+     * @param directory The directory to scan.
+     * @return All found {@link Plugin}s.
+     */
+    Set<Plugin> scanForPlugins(File directory);
+}

@@ -21,49 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.era;
-
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import io.github.histacom.Histacom;
-import io.github.histacom.api.event.era.AdvanceEraEvent;
+package uk.jamierocks.histacom.api.plugin;
 
 import java.util.List;
 
-public class DefaultEraManager implements EraManager {
+public class PluginDescription {
 
-    private List<Era> eras = Lists.newArrayList();
-    private Era currentEra;
-    private int lastEra = -1;
+    private String name;
+    private String version;
+    private List<String> authors;
+    private String mainClass;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Era getCurrentEra() {
-        if (this.currentEra == null) {
-            this.currentEra = Preconditions.checkNotNull(this.eras.get(this.lastEra + 1));
-        }
-        return this.currentEra;
+    public String getName() {
+        return this.name;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Era advanceEra() {
-        this.currentEra = Preconditions.checkNotNull(this.eras.get(++this.lastEra + 1));
-
-        Histacom.getGame().getEventBus().post(new AdvanceEraEvent(this.currentEra, this.eras.get(this.lastEra)));
-
-        return this.currentEra;
+    public String getVersion() {
+        return this.version;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addEra(Era era) {
-        this.eras.add(Preconditions.checkNotNull(era));
+    public List<String> getAuthors() {
+        return this.authors;
+    }
+
+    public String getMainClass() {
+        return this.mainClass;
     }
 }

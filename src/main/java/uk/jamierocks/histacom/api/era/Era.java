@@ -21,4 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom;
+package uk.jamierocks.histacom.api.era;
+
+public interface Era {
+
+}

@@ -21,36 +21,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom;
-
-import com.google.common.base.Preconditions;
-import io.github.histacom.api.Game;
-
-public class Histacom {
-
-    private static Game game;
-
-    /**
-     * Attempts to set the currently running {@link Game}
-     * This will not work, if one is already running!
-     *
-     * <b>THIS SHOULD ONLY BE USED BY THE IMPLEMENTATION!</b>
-     *
-     * @param game The {@link Game} to set.
-     */
-    public static void setGame(Game game) {
-        if (Histacom.game != null) {
-            throw new UnsupportedOperationException("There is only one Game!");
-        }
-        Histacom.game = Preconditions.checkNotNull(game);
-    }
-
-    /**
-     * Gets the currently running {@link Game}.
-     *
-     * @return The {@link Game} instance being run.
-     */
-    public static Game getGame() {
-        return game;
-    }
-}
+package uk.jamierocks.histacom;

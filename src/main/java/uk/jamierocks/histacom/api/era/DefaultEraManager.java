@@ -21,29 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.era;
+package uk.jamierocks.histacom.api.era;
 
-public interface EraManager {
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import uk.jamierocks.histacom.Histacom;
+import uk.jamierocks.histacom.api.event.era.AdvanceEraEvent;
 
-    /**
-     * Gets the {@link Era} currently being used.
-     *
-     * @return The current {@link Era}.
-     */
-    Era getCurrentEra();
+import java.util.List;
 
-    /**
-     * Advances to the next {@link Era}.
-     *
-     * @return The next {@link Era}.
-     */
-    Era advanceEra();
+public class DefaultEraManager implements EraManager {
+
+    private List<Era> eras = Lists.newArrayList();
+    private Era currentEra;
+    private int lastEra = -1;
 
     /**
-     * Registers an {@link Era}.
-     * The {@link Era} will be added to the end of the {@link Era} list.
-     *
-     * @param era The {@link Era} to register.
+     * {@inheritDoc}
      */
-    void addEra(Era era);
+    @Override
+    public Era getCurrentEra() {
+        if (this.currentEra == null) {
+            this.currentEra = Preconditions.checkNotNull(this.eras.get(this.lastEra + 1));
+        }
+        return this.currentEra;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Era advanceEra() {
+        this.currentEra = Preconditions.checkNotNull(this.eras.get(++this.lastEra + 1));
+
+        Histacom.getGame().getEventBus().post(new AdvanceEraEvent(this.currentEra, this.eras.get(this.lastEra)));
+
+        return this.currentEra;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addEra(Era era) {
+        this.eras.add(Preconditions.checkNotNull(era));
+    }
 }

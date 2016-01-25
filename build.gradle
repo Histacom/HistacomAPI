@@ -14,7 +14,7 @@ defaultTasks 'clean', 'licenseFormat'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-group = 'io.github.histacom'
+group = 'uk.jamierocks.histacom'
 archivesBaseName = 'HistacomCore'
 version = '1.0.0-SNAPSHOT'
 ext.url = 'http://histacom.jamierocks.uk/'

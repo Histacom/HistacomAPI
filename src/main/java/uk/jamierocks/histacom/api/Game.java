@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api;
+package uk.jamierocks.histacom.api;
 
-import io.github.histacom.api.era.EraManager;
-import io.github.histacom.api.plugin.PluginManager;
+import uk.jamierocks.histacom.api.era.EraManager;
+import uk.jamierocks.histacom.api.plugin.PluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.lexteam.eventbus.IEventBus;

@@ -21,28 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.event.era;
+package uk.jamierocks.histacom;
 
-import io.github.histacom.api.era.Era;
+import com.google.common.base.Preconditions;
+import uk.jamierocks.histacom.api.Game;
 
-import java.util.Optional;
+public class Histacom {
 
-public class AdvanceEraEvent implements EraEvent {
+    private static Game game;
 
-    private final Era newEra;
-    private final Era oldEra;
-
-    public AdvanceEraEvent(Era newEra, Era oldEra) {
-        this.newEra = newEra;
-        this.oldEra = oldEra;
+    /**
+     * Attempts to set the currently running {@link Game}
+     * This will not work, if one is already running!
+     *
+     * <b>THIS SHOULD ONLY BE USED BY THE IMPLEMENTATION!</b>
+     *
+     * @param game The {@link Game} to set.
+     */
+    public static void setGame(Game game) {
+        if (Histacom.game != null) {
+            throw new UnsupportedOperationException("There is only one Game!");
+        }
+        Histacom.game = Preconditions.checkNotNull(game);
     }
 
-    @Override
-    public Era getEra() {
-        return this.newEra;
-    }
-
-    public Optional<Era> getPreviousEra() {
-        return Optional.ofNullable(this.oldEra);
+    /**
+     * Gets the currently running {@link Game}.
+     *
+     * @return The {@link Game} instance being run.
+     */
+    public static Game getGame() {
+        return game;
     }
 }

@@ -21,4 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.plugin;
+package uk.jamierocks.histacom.api.event.era;
+
+import uk.jamierocks.histacom.api.era.Era;
+import uk.jamierocks.histacom.api.event.Event;
+
+public interface EraEvent extends Event {
+
+    Era getEra();
+}

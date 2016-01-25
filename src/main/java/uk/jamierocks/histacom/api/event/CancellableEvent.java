@@ -21,8 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.event;
+package uk.jamierocks.histacom.api.event;
 
-public interface Event {
+/**
+ * Represents an event that can be cancelled.
+ */
+public interface CancellableEvent extends Event {
 
+    /**
+     * Checks if the event is cancelled or not.
+     *
+     * @return {@code true} if the event is cancelled.
+     */
+    boolean isCancelled();
+
+    /**
+     * Changes teh event's cancelled state.
+     *
+     * @param cancelled the new state.
+     */
+    void setCancelled(boolean cancelled);
 }
