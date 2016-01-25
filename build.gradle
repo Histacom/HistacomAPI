@@ -1,6 +1,8 @@
 plugins {
     id 'java'
 
+    id 'maven'
+
     id 'idea'
     id 'eclipse'
 
@@ -14,6 +16,8 @@ targetCompatibility = 1.8
 
 group = 'io.github.histacom'
 archivesBaseName = 'HistacomCore'
+version = '1.0.0-SNAPSHOT'
+ext.url = 'http://histacom.jamierocks.uk/'
 
 repositories {
     mavenCentral()
@@ -46,6 +50,63 @@ license {
 
     mapping {
         java = 'SLASHSTAR_STYLE'
+    }
+}
+
+
+task javadocJar(type: Jar, dependsOn: 'javadoc') {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+task sourcesJar(type: Jar, dependsOn: 'classes') {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'http://lex1.lexteam.xyz:8888/repository/'
+                    + (version.endsWith('-SNAPSHOT') ? 'snapshots' : 'internal') + '/') {
+                authentication(userName: project.lexRepoUser, password: project.lexRepoPass)
+            }
+
+            pom {
+                artifactId = project.archivesBaseName.toLowerCase()
+
+                project {
+                    name = project.archivesBaseName
+                    description = project.description
+                    packaging = 'jar'
+                    url = project.url
+
+                    scm {
+                        url = "https://github.com/Histacom/HistacomCore"
+                        connection = "scm:git:https://github.com/Histacom/HistacomCore.git"
+                        developerConnection = "scm:git:git@github.com:Histacom/HistacomCore.git"
+                    }
+
+                    issueManagement {
+                        system = 'GitHub'
+                        url = 'https://github.com/Histacom/HistacomCore/issues'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'http://opensource.org/licenses/MIT'
+                            distribution = 'repo'
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
