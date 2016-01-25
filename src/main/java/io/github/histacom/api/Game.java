@@ -27,10 +27,13 @@ import io.github.histacom.api.era.EraManager;
 import io.github.histacom.api.plugin.PluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xyz.lexteam.eventbus.IEventBus;
+import xyz.lexteam.eventbus.SimpleEventBus;
 
 public abstract class Game {
 
     private final Logger logger = LoggerFactory.getLogger("Histacom");
+    private final IEventBus eventBus = new SimpleEventBus();
 
     /**
      * The game's main logger.
@@ -39,6 +42,10 @@ public abstract class Game {
      */
     public Logger getLogger() {
         return this.logger;
+    }
+
+    public IEventBus getEventBus() {
+        return this.eventBus;
     }
 
     /**

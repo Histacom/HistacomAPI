@@ -21,49 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.github.histacom.api.era;
+package io.github.histacom.api.event.era;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import io.github.histacom.Histacom;
-import io.github.histacom.api.event.era.AdvanceEraEvent;
+import io.github.histacom.api.era.Era;
 
-import java.util.List;
+import java.util.Optional;
 
-public class DefaultEraManager implements EraManager {
+public class AdvanceEraEvent implements EraEvent {
 
-    private List<Era> eras = Lists.newArrayList();
-    private Era currentEra;
-    private int lastEra = -1;
+    private final Era newEra;
+    private final Era oldEra;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Era getCurrentEra() {
-        if (this.currentEra == null) {
-            this.currentEra = Preconditions.checkNotNull(this.eras.get(this.lastEra + 1));
-        }
-        return this.currentEra;
+    public AdvanceEraEvent(Era newEra, Era oldEra) {
+        this.newEra = newEra;
+        this.oldEra = oldEra;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Era advanceEra() {
-        this.currentEra = Preconditions.checkNotNull(this.eras.get(++this.lastEra + 1));
-
-        Histacom.getGame().getEventBus().post(new AdvanceEraEvent(this.currentEra, this.eras.get(this.lastEra)));
-
-        return this.currentEra;
+    public Era getEra() {
+        return this.newEra;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addEra(Era era) {
-        this.eras.add(Preconditions.checkNotNull(era));
+    public Optional<Era> getPreviousEra() {
+        return Optional.ofNullable(this.oldEra);
     }
 }
