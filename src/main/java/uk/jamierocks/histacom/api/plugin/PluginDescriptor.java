@@ -21,14 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.histacom.api.event;
+package uk.jamierocks.histacom.api.plugin;
 
-import uk.jamierocks.histacom.Histacom;
+import java.util.List;
 
-public interface Event {
+public class PluginDescriptor {
 
-    default Event post() {
-        Histacom.getGame().getEventBus().post(this);
-        return this;
+    private String name;
+    private String version;
+    private List<String> authors;
+    private String mainClass;
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getVersion() {
+        return this.version;
+    }
+
+    public List<String> getAuthors() {
+        return this.authors;
+    }
+
+    public String getMainClass() {
+        return this.mainClass;
     }
 }

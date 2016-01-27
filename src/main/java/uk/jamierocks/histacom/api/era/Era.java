@@ -25,4 +25,5 @@ package uk.jamierocks.histacom.api.era;
 
 public interface Era {
 
+    EraDescriptor getDescriptor();
 }

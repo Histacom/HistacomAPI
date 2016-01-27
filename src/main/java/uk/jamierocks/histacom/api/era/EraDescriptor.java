@@ -21,30 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.histacom.api.plugin;
+package uk.jamierocks.histacom.api.era;
 
-import java.util.List;
+public interface EraDescriptor {
 
-public class PluginDescription {
+    String name();
 
-    private String name;
-    private String version;
-    private List<String> authors;
-    private String mainClass;
+    static Builder builder() {
+        return new Builder() {
+            private String name = "Unnamed";
 
-    public String getName() {
-        return this.name;
+            @Override
+            public Builder name(String name) {
+                this.name = name;
+                return this;
+            }
+
+            @Override
+            public EraDescriptor build() {
+                return new EraDescriptor() {
+                    @Override
+                    public String name() {
+                        return name;
+                    }
+                };
+            }
+        };
     }
 
-    public String getVersion() {
-        return this.version;
-    }
+    interface Builder {
 
-    public List<String> getAuthors() {
-        return this.authors;
-    }
+        Builder name(String name);
 
-    public String getMainClass() {
-        return this.mainClass;
+        EraDescriptor build();
     }
 }

@@ -28,10 +28,10 @@ import org.slf4j.LoggerFactory;
 
 public abstract class Plugin {
 
-    private final PluginDescription pluginDescription;
+    private final PluginDescriptor pluginDescription;
     private final Logger logger;
 
-    public Plugin(PluginDescription pluginDescription) {
+    public Plugin(PluginDescriptor pluginDescription) {
         this.pluginDescription = pluginDescription;
         this.logger = LoggerFactory.getLogger(pluginDescription.getName());
     }
@@ -40,7 +40,7 @@ public abstract class Plugin {
 
     public abstract void onDisable();
 
-    public PluginDescription getDescription() {
+    public PluginDescriptor getDescription() {
         return this.pluginDescription;
     }
 

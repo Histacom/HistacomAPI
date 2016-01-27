@@ -67,8 +67,7 @@ public class SimpleEraManager implements EraManager {
     public void addEra(Era era) {
         Preconditions.checkNotNull(era);
 
-        AddEraEvent event = new AddEraEvent(era);
-        Histacom.getGame().getEventBus().post(event);
+        AddEraEvent event = (AddEraEvent) new AddEraEvent(era).post();
         if (event.isCancelled()) {
             return;
         }
