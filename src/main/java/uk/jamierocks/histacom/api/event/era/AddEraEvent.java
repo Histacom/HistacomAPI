@@ -21,53 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.histacom.api.era;
+package uk.jamierocks.histacom.api.event.era;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import uk.jamierocks.histacom.Histacom;
-import uk.jamierocks.histacom.api.event.era.AdvanceEraEvent;
+import uk.jamierocks.histacom.api.era.Era;
+import uk.jamierocks.histacom.api.event.CancellableEvent;
 
-import java.util.List;
+public class AddEraEvent implements EraEvent, CancellableEvent {
 
-public class DefaultEraManager implements EraManager {
+    private final Era era;
+    private boolean cancelled = false;
 
-    private List<Era> eras = Lists.newArrayList();
-    private Era currentEra;
-    private int lastEra = -1;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Era getCurrentEra() {
-        if (this.currentEra == null) {
-            this.currentEra = Preconditions.checkNotNull(this.eras.get(this.lastEra + 1));
-        }
-        return this.currentEra;
+    public AddEraEvent(Era era) {
+        this.era = era;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Era advanceEra() {
-        this.currentEra = Preconditions.checkNotNull(this.eras.get(++this.lastEra + 1));
-
-        Histacom.getGame().getEventBus().post(new AdvanceEraEvent(this.currentEra, this.eras.get(this.lastEra)));
-
-        return this.currentEra;
+    public Era getEra() {
+        return this.era;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void addEra(Era era) {
-        Preconditions.checkNotNull(era);
+    public boolean isCancelled() {
+        return this.cancelled;
+    }
 
-        Histacom.getGame().getEventBus().registerListener(era);
-
-        this.eras.add(era);
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 }
