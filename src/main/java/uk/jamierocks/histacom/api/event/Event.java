@@ -24,9 +24,21 @@
 package uk.jamierocks.histacom.api.event;
 
 import uk.jamierocks.histacom.Histacom;
+import xyz.lexteam.eventbus.IEventBus;
 
+/**
+ * Represents an event.
+ *
+ * Although currently not required it is recommended ALL events inherit from here.
+ */
 public interface Event {
 
+    /**
+     * Posts the event.
+     *
+     * @return This
+     * @see IEventBus#post(Object)
+     */
     default Event post() {
         Histacom.getGame().getEventBus().post(this);
         return this;

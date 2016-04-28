@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-
     id 'maven'
 
     id 'idea'
@@ -8,7 +7,6 @@ plugins {
 
     id 'com.github.hierynomus.license' version '0.11.0'
 }
-
 defaultTasks 'clean', 'licenseFormat'
 
 sourceCompatibility = 1.8
@@ -22,7 +20,10 @@ ext.url = 'http://histacom.jamierocks.uk/'
 repositories {
     mavenCentral()
     maven {
-        url 'http://repo.lexteam.xyz/repository/internal/'
+        url 'http://repo.lexteam.xyz/maven/releases/'
+    }
+    maven {
+        url 'http://repo.lexteam.xyz/maven/snapshots/'
     }
 }
 
@@ -72,9 +73,9 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: 'http://lex1.lexteam.xyz:8888/repository/'
-                    + (version.endsWith('-SNAPSHOT') ? 'snapshots' : 'internal') + '/') {
-                authentication(userName: project.lexRepoUser, password: project.lexRepoPass)
+            if (System.getenv('MAVEN_RELEASES') != null) {
+                repository(url: 'file://' + System.getenv('MAVEN_RELEASES'))
+                snapshotRepository(url: 'file://' + System.getenv('MAVEN_SNAPSHOTS'))
             }
 
             pom {

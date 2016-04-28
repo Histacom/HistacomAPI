@@ -25,32 +25,55 @@ package uk.jamierocks.histacom;
 
 import com.google.common.base.Preconditions;
 import uk.jamierocks.histacom.api.Game;
+import uk.jamierocks.histacom.api.era.EraManager;
+import uk.jamierocks.histacom.api.plugin.PluginManager;
+import xyz.lexteam.eventbus.IEventBus;
 
+/**
+ * Allows for static access to the {@link Game}.
+ */
 public class Histacom {
 
-    private static Game game;
+    private static final Game game = null;
 
     /**
-     * Attempts to set the currently running {@link Game}
-     * This will not work, if one is already running!
+     * Gets the {@link Game}.
      *
-     * <b>THIS SHOULD ONLY BE USED BY THE IMPLEMENTATION!</b>
-     *
-     * @param game The {@link Game} to set.
+     * @return The game
      */
-    public static void setGame(Game game) {
-        if (Histacom.game != null) {
-            throw new UnsupportedOperationException("There is only one Game!");
-        }
-        Histacom.game = Preconditions.checkNotNull(game);
+    public static Game getGame() {
+        Preconditions.checkNotNull(game, "Histacom not yet initialised!");
+
+        return game;
     }
 
     /**
-     * Gets the currently running {@link Game}.
+     * Gets the {@link IEventBus}.
      *
-     * @return The {@link Game} instance being run.
+     * @return The event bus
+     * @see Game#getEventBus()
      */
-    public static Game getGame() {
-        return game;
+    public static IEventBus getEventBus() {
+        return getGame().getEventBus();
+    }
+
+    /**
+     * Gets the {@link EraManager}.
+     *
+     * @return The era manager
+     * @see Game#getEraManager()
+     */
+    public static EraManager getEraManager() {
+        return getGame().getEraManager();
+    }
+
+    /**
+     * Gets the {@link PluginManager}
+     *
+     * @return The plugin manager
+     * @see Game#getPluginManager()
+     */
+    public static PluginManager getPluginManager() {
+        return getGame().getPluginManager();
     }
 }

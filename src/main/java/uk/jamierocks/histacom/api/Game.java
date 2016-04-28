@@ -25,40 +25,31 @@ package uk.jamierocks.histacom.api;
 
 import uk.jamierocks.histacom.api.era.EraManager;
 import uk.jamierocks.histacom.api.plugin.PluginManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xyz.lexteam.eventbus.IEventBus;
-import xyz.lexteam.eventbus.SimpleEventBus;
 
-public abstract class Game {
-
-    private final Logger logger = LoggerFactory.getLogger("Histacom");
-    private final IEventBus eventBus = new SimpleEventBus();
-
-    /**
-     * The game's main logger.
-     *
-     * @return The main {@link Logger}.
-     */
-    public Logger getLogger() {
-        return this.logger;
-    }
-
-    public IEventBus getEventBus() {
-        return this.eventBus;
-    }
+/**
+ * The central access-point for all things Histacom.
+ */
+public interface Game {
 
     /**
-     * The game's {@link EraManager}.
+     * Gets the {@link IEventBus}.
      *
-     * @return The game's {@link EraManager}.
+     * @return The event bus
      */
-    public abstract EraManager getEraManager();
+    IEventBus getEventBus();
 
     /**
-     * The game's {@link PluginManager}.
+     * Gets the {@link EraManager}.
      *
-     * @return the game's {@link PluginManager}.
+     * @return The era manager
      */
-    public abstract PluginManager getPluginManager();
+    EraManager getEraManager();
+
+    /**
+     * Gets the {@link PluginManager}
+     *
+     * @return The plugin manager
+     */
+    PluginManager getPluginManager();
 }
